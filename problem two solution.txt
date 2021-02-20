@@ -1,0 +1,51 @@
+<?php  
+
+$str = "whO";
+
+$sm_letter_array = array_merge(range('a', 'z'));
+$cp_letter_array = array_merge(range('A', 'Z'));
+$total_value_of_smLetter = 0;
+$total_value_of_cpLetter = 0;
+
+if(strlen($str) <= 50){
+    for ($i = 0; $i < strlen($str); $i++){
+        foreach( $sm_letter_array as $k => $v) {
+            if (ctype_lower($str[$i])){
+                if($str[$i] == $v){
+                    if($v == 'a' || $v == 'e' || $v == 'i' || $v == 'o' || $v == 'u'){
+                        $vowel_small_value = $k+1 + 10;
+                        $total_value_of_smLetter += $vowel_small_value;
+                    }
+                    else{
+                        $total_value_of_smLetter += $k+1;
+                    }
+                }
+            }
+        }
+        
+        foreach( $cp_letter_array as $cp_k => $cp_v) {
+            if (ctype_upper($str[$i])){
+                if($str[$i] == $cp_v){
+                    if($cp_v == 'A' || $cp_v == 'E' || $cp_v == 'I' || $cp_v == 'O' || $cp_v == 'U'){
+                        
+                        $vowel_capital_value = $cp_k+1;
+                        $total_value_of_cpLetter += $vowel_capital_value * $vowel_capital_value;
+                    }
+                    else{
+                        $consonant_capital_value = $cp_k+1;
+                        $total_value_of_cpLetter += $consonant_capital_value;
+                    }
+                }
+            }
+        }
+        
+    }
+    
+    echo $total_value_of_smLetter + $total_value_of_cpLetter;
+}
+else{
+    echo "it's so long string !!";
+}
+
+
+?> 
